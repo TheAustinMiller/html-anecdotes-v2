@@ -1,0 +1,137 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* -- Window container (matches the dashboard/post vibe) -- */
+.home-block {
+    max-width: 700px;
+    max-height: 95px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+    border: 2px solid #808080;
+    background-color: #E0E0E0;
+    /* panel background like dashboard */
+    box-shadow: -2px -2px #ffffff, 2px 2px #404040;
+    /* raised window */
+    position: absolute;
+    font-family: 'Press Start 2P', monospace;
+    overflow: hidden;
+}
+
+/* -- Titlebar (the top bar) -- */
+.home-block .titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 8px;
+    background: #00007a;
+    /* classic dark blue titlebar */
+    color: #ffffff;
+    border-bottom: 2px solid #808080;
+    box-shadow: -1px -1px 0 #ffffff, 1px 1px 0 #404040;
+}
+
+/* Title text (keeps that pixel / all-caps retro vibe) */
+.home-block .titlebar .title {
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+/* Controls container (keeps the X at the far right) */
+.home-block .title-controls {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+/* -- Close button (non-functional red X) -- */
+.win-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 20px;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 12px;
+    color: #ffffff;
+    background: #ff0000;
+    /* red close box */
+    border: 2px solid #808080;
+    box-shadow: -2px -2px #ffffff, 2px 2px #404040;
+    /* raised */
+    cursor: default;
+    /* non-functional visual */
+}
+
+/* pressed/inset look on hover — still non-functional */
+.win-close:hover {
+    box-shadow: inset 2px 2px #ffffff, inset -2px -2px #404040;
+    background: #cc0000;
+}
+
+/* -- Body area (content of the window) -- */
+/* Use the same visual style as your post-body */
+.home-block .home-body {
+    background-color: #F0F0F0;
+    padding: 12px;
+    border-top: none;
+    box-shadow: inset 2px 2px 0 #ffffff, inset -2px -2px 0 #808080;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* center the links and style them like retro buttons */
+.home-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    align-items: center;
+}
+
+/* button-like links */
+.link-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: #000;
+    background: #c0c0c0;
+    padding: 8px 14px;
+    border: 2px solid #808080;
+    box-shadow: -2px -2px #ffffff, 2px 2px #404040;
+    /* raised */
+    font-family: inherit;
+    font-size: 12px;
+}
+
+/* hover becomes inset / pressed */
+.link-btn:hover {
+    box-shadow: inset 2px 2px #ffffff, inset -2px -2px #404040;
+    background: #bdbdbd;
+}
+
+/* tiny responsive tweak */
+@media (max-width: 480px) {
+    .home-block {
+        padding: 0;
+    }
+
+    .home-block .home-body {
+        padding: 10px;
+    }
+
+    .link-btn {
+        padding: 6px 10px;
+        font-size: 10px;
+    }
+}
