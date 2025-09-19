@@ -2,136 +2,229 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 1;
 }
 
-/* -- Window container (matches the dashboard/post vibe) -- */
+.main-title {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.subtitle {
+    color: #ffffff;
+    font-size: 14px;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Main window container */
 .home-block {
-    max-width: 700px;
-    max-height: 95px;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    margin: auto;
-    border: 2px solid #808080;
-    background-color: #E0E0E0;
-    /* panel background like dashboard */
-    box-shadow: -2px -2px #ffffff, 2px 2px #404040;
-    /* raised window */
-    position: absolute;
-    font-family: 'Press Start 2P', monospace;
-    overflow: hidden;
+    width: 700px;
+    background-color: #c0c0c0;
+    border: 2px outset #c0c0c0;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    font-family: 'MS Sans Serif', sans-serif;
+    font-size: 12px;
+    position: relative;
 }
 
-/* -- Titlebar (the top bar) -- */
-.home-block .titlebar {
+/* Titlebar */
+.titlebar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 6px 8px;
-    background: #00007a;
-    /* classic dark blue titlebar */
-    color: #ffffff;
-    border-bottom: 2px solid #808080;
-    box-shadow: -1px -1px 0 #ffffff, 1px 1px 0 #404040;
+    height: 18px;
+    padding: 2px 4px;
+    background: linear-gradient(90deg, #000080 0%, #000040 100%);
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
 }
 
-/* Title text (keeps that pixel / all-caps retro vibe) */
-.home-block .titlebar .title {
-    font-size: 12px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    line-height: 1;
+.title {
+    font-size: 11px;
+    line-height: 14px;
 }
 
-/* Controls container (keeps the X at the far right) */
-.home-block .title-controls {
+.title-controls {
     display: flex;
-    gap: 6px;
-    align-items: center;
+    gap: 2px;
 }
 
-/* -- Close button (non-functional red X) -- */
-.win-close {
-    display: inline-flex;
+/* Window control buttons */
+.win-button {
+    width: 16px;
+    height: 14px;
+    background: #c0c0c0;
+    border: 1px outset #c0c0c0;
+    font-size: 9px;
+    color: black;
+    cursor: pointer;
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 20px;
-    padding: 0;
-    margin: 0;
-    font-family: inherit;
-    font-weight: 700;
-    font-size: 12px;
-    color: #ffffff;
-    background: #ff0000;
-    /* red close box */
-    border: 2px solid #808080;
-    box-shadow: -2px -2px #ffffff, 2px 2px #404040;
-    /* raised */
-    cursor: default;
-    /* non-functional visual */
+    font-weight: bold;
 }
 
-/* pressed/inset look on hover — still non-functional */
-.win-close:hover {
-    box-shadow: inset 2px 2px #ffffff, inset -2px -2px #404040;
-    background: #cc0000;
+.win-button:active {
+    border: 1px inset #c0c0c0;
 }
 
-/* -- Body area (content of the window) -- */
-/* Use the same visual style as your post-body */
-.home-block .home-body {
-    background-color: #F0F0F0;
-    padding: 12px;
-    border-top: none;
-    box-shadow: inset 2px 2px 0 #ffffff, inset -2px -2px 0 #808080;
-    font-size: 0.9rem;
-    line-height: 1.4;
+.win-minimize::before {
+    content: "_";
+    margin-top: -2px;
 }
 
-/* center the links and style them like retro buttons */
+.win-maximize::before {
+    content: "□";
+    font-size: 8px;
+}
+
+.win-close::before {
+    content: "✕";
+    font-size: 7px;
+}
+
+/* Window body */
+.home-body {
+    background-color: #c0c0c0;
+    padding: 40px;
+    border: 1px inset #c0c0c0;
+    min-height: 300px;
+}
+
+/* Menu bar */
+.menu-bar {
+    background: #c0c0c0;
+    border-bottom: 1px solid #808080;
+    padding: 4px;
+    margin-bottom: 0;
+}
+
+.menu-item {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 11px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.menu-item:hover {
+    border: 1px outset #c0c0c0;
+    background: #e0e0e0;
+}
+
+/* Content area */
+.content-area {
+    text-align: center;
+    padding: 20px 10px;
+}
+
+/* Navigation buttons */
 .home-links {
     display: flex;
     justify-content: center;
-    gap: 16px;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.link-btn {
+    display: inline-block;
+    padding: 8px 20px;
+    font-family: 'MS Sans Serif', sans-serif;
+    font-size: 20px;
+    color: black;
+    background: #cacaca;
+    border: 2px outset #c0c0c0;
+    text-decoration: none;
+    cursor: pointer;
+    min-width: 90px;
+    text-align: center;
+}
+
+.link-btn:hover {
+    background: #d4d0c8;
+}
+
+.link-btn:active {
+    border: 2px inset #c0c0c0;
+}
+
+/* Status bar */
+.status-bar {
+    height: 20px;
+    background: #c0c0c0;
+    border-top: 1px solid #808080;
+    border-left: 1px inset #c0c0c0;
+    border-right: 1px inset #c0c0c0;
+    border-bottom: 1px inset #c0c0c0;
+    padding: 2px 8px;
+    font-size: 11px;
+    color: #000;
+    display: flex;
     align-items: center;
 }
 
-/* button-like links */
-.link-btn {
-    display: inline-block;
-    text-decoration: none;
-    color: #000;
+/* Taskbar simulation */
+.taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
     background: #c0c0c0;
-    padding: 8px 14px;
-    border: 2px solid #808080;
-    box-shadow: -2px -2px #ffffff, 2px 2px #404040;
-    /* raised */
-    font-family: inherit;
-    font-size: 12px;
+    border-top: 1px solid #dfdfdf;
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+    z-index: 1000;
 }
 
-/* hover becomes inset / pressed */
-.link-btn:hover {
-    box-shadow: inset 2px 2px #ffffff, inset -2px -2px #404040;
-    background: #bdbdbd;
+.start-button {
+    height: 22px;
+    background: #c0c0c0;
+    border: 1px outset #c0c0c0;
+    padding: 0 8px;
+    font-family: 'MS Sans Serif', sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
 
-/* tiny responsive tweak */
-@media (max-width: 480px) {
+.start-button:active {
+    border: 1px inset #c0c0c0;
+}
+
+.taskbar-time {
+    margin-left: auto;
+    border: 1px inset #c0c0c0;
+    padding: 2px 8px;
+    font-size: 11px;
+    background: #c0c0c0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
     .home-block {
-        padding: 0;
+        width: 95%;
+        max-width: 600px;
     }
 
-    .home-block .home-body {
-        padding: 10px;
+    .home-links {
+        flex-direction: column;
+        gap: 10px;
     }
 
     .link-btn {
-        padding: 6px 10px;
-        font-size: 10px;
+        width: 100%;
     }
 }

@@ -2,22 +2,39 @@
 
 
 <div class="home-container">
-    <h1>Welcome to Anecdotes!</h1>
+    <h1 class="main-title">Welcome to Anecdotes!</h1>
+    <p class="subtitle">Your personal note-taker, thought-jotter, idea-organizer, and story-sharer.</p>
 
     <div class="home-block">
-        <div class="titlebar" role="banner" aria-hidden="true">
+        <div class="titlebar">
             <div class="title">Anecdotes</div>
             <div class="title-controls">
-                <button class="win-close" tabindex="-1" aria-hidden="true">X</button>
+                <button class="win-button win-minimize" title="Minimize"></button>
+                <button class="win-button win-maximize" title="Maximize"></button>
+                <button class="win-button win-close" title="Close"></button>
             </div>
         </div>
 
+        <div class="menu-bar">
+            <span class="menu-item">File</span>
+            <span class="menu-item">Edit</span>
+            <span class="menu-item">View</span>
+            <span class="menu-item">Help</span>
+        </div>
+
         <div class="home-body">
-            <nav class="home-links">
-                <a routerLink="/login" class="link-btn">Login</a>
-                <a routerLink="/dashboard" class="link-btn">Dashboard</a>
-            </nav>
+            <div class="content-area">
+                <img src="assets/logo.png" alt="Anecdotes Logo" class="home-logo" width="150" height="auto">
+
+                <nav class="home-links">
+                    <a href="/login" class="link-btn">Login</a>
+                    <a href="/dashboard" class="link-btn">Dashboard</a>
+                </nav>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            Online
         </div>
     </div>
-
 </div>
