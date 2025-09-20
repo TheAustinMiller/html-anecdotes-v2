@@ -18,12 +18,12 @@ export class SignupComponent {
 
   constructor(private auth: AuthService, private router: Router) { }
 
-  onSignup() {
+  onSignup(): void {
     this.error = '';
     this.success = '';
 
-    // Validation
-    if (!this.username || !this.password) {
+    // Basic validation
+    if (!this.username?.trim() || !this.password?.trim()) {
       this.error = 'Username and password are required';
       return;
     }
@@ -38,16 +38,41 @@ export class SignupComponent {
       return;
     }
 
+    // Check for suspicious patterns (same as login)
+    const suspiciousPatterns = [
+      /['"]/g,
+      /;\s*drop\s/i,
+      /;\s*delete\s/i,
+      /;\s*insert\s/i,
+      /;\s*update\s/i,
+      /<script/i,
+      /javascript:/i
+    ];
+
+    if (suspiciousPatterns.some(pattern => 
+        pattern.test(this.username) || pattern.test(this.password) || pattern.test(this.email))) {
+      this.error = 'Invalid characters detected';
+      return;
+    }
+
     this.loading = true;
 
-    this.auth.signup(this.username, this.password, this.email || undefined).subscribe({
+    this.auth.signup(this.username.trim(), this.password, this.email || undefined).subscribe({
       next: (response) => {
-        this.success = response.message;
+        this.success = 'Account created successfully! Redirecting to login...';
+        
+        // Clear sensitive data
+        this.password = '';
+        this.confirmPassword = '';
+        
         setTimeout(() => {
           this.router.navigate(['/login']);
         }, 2000);
       },
       error: (error) => {
+        // Clear passwords on error
+        this.password = '';
+        this.confirmPassword = '';
         this.error = error.message;
         this.loading = false;
       },
@@ -55,5 +80,24 @@ export class SignupComponent {
         this.loading = false;
       }
     });
+  }
+
+  onCloseWindow(): void {
+    // Clear sensitive data
+    this.username = '';
+    this.password = '';
+    this.confirmPassword = '';
+    this.email = '';
+    this.error = '';
+    this.success = '';
+    
+    // Navigate to root
+    this.router.navigate(['/']);
+  }
+
+  ngOnDestroy(): void {
+    // Clear sensitive data when component is destroyed
+    this.password = '';
+    this.confirmPassword = '';
   }
 }

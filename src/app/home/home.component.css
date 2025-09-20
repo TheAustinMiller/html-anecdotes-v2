@@ -152,6 +152,7 @@
     font-size: 15px;
     color: black;
     background: #cacaca;
+    border: 2px inset #dbdbdb;
     border: 2px outset #c0c0c0;
     text-decoration: none;
     cursor: pointer;
@@ -175,6 +176,7 @@
     border-right: 1px inset #c0c0c0;
     border-bottom: 1px inset #c0c0c0;
     padding: 2px 8px;
+    gap: 5px;
     font-size: 11px;
     color: #000;
     display: flex;
@@ -244,6 +246,22 @@
     .subtitle-typing {
         font-size: 24px;
     }
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #00ff00;
+    border: 1px solid #000;
+}
+
+.status-indicator.error {
+    background: #ff0000;
+}
+
+.status-indicator.warning {
+    background: #ffff00;
 }
 
 /* ANIMATIONS - UPDATED WITH BIGGER TEXT */

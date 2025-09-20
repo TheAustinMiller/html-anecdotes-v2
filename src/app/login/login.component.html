@@ -1,28 +1,56 @@
 <div class="login-container">
-  <h2>Login</h2>
-  <form (ngSubmit)="onLogin()">
-    <div>
-      <input 
-        type="text" 
-        [(ngModel)]="username" 
-        name="username"
-        placeholder="Username" 
-        required
-        [disabled]="loading">
+  <div class="login-titlebar">
+    <div class="login-title">Login</div>
+    <div class="title-controls">
+      <button class="win-button win-close" (click)="onCloseWindow()" title="Close"></button>
     </div>
-    <div>
-      <input 
-        type="password" 
-        [(ngModel)]="password" 
-        name="password"
-        placeholder="Password" 
-        required
-        [disabled]="loading">
+  </div>
+
+  <div class="login-body">
+    <div class="brand-section">
+      <h1>🗂️ Anecdotes</h1>
+      <p>Secure Login Portal</p>
     </div>
-    <div *ngIf="error" class="error">{{ error }}</div>
-    <button type="submit" [disabled]="loading">
-      {{ loading ? 'Logging in...' : 'Login' }}
-    </button>
-  </form>
-  <p><a routerLink="/signup">Don't have an account? Sign up</a></p>
+
+    <h2>Please Log In</h2>
+    
+    <form (ngSubmit)="onLogin()">
+      <div class="input-group">
+        <label for="username">Username:</label>
+        <input 
+          type="text" 
+          [(ngModel)]="username" 
+          name="username"
+          required
+          [disabled]="loading">
+      </div>
+      
+      <div class="input-group">
+        <label for="password">Password:</label>
+        <input 
+          type="password" 
+          [(ngModel)]="password" 
+          name="password"
+          required
+          [disabled]="loading">
+      </div>
+      
+      <div *ngIf="error" class="error">
+        <span class="status-indicator error"></span>
+        {{ error }}
+      </div>
+      
+      <button type="submit" [disabled]="loading">
+        <span *ngIf="!loading">Login</span>
+        <span *ngIf="loading" class="loading-text">
+          Logging in<span class="loading-dots"></span>
+        </span>
+      </button>
+    </form>
+    
+    <div class="signup-link">
+      <span class="status-indicator"></span>
+      <a routerLink="/signup">Don't have an account? Sign up</a>
+    </div>
+  </div>
 </div>

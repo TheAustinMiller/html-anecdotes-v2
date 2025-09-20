@@ -1,1 +1,94 @@
-<p>signup works!</p>
+<div class="signup-container">
+  <div class="signup-titlebar">
+    <div class="signup-title">Sign Up</div>
+    <div class="title-controls">
+      <button class="win-button win-close" (click)="onCloseWindow()" title="Close"></button>
+    </div>
+  </div>
+
+  <div class="signup-body">
+    <div class="brand-section">
+      <h1>🗂️ Anecdotes</h1>
+      <p>Account Setup Wizard</p>
+    </div>
+
+    <h2>Create New Account</h2>
+    
+    <form (ngSubmit)="onSignup()">
+      <div class="input-group">
+        <label for="username">Username:</label>
+        <input 
+          type="text" 
+          [(ngModel)]="username" 
+          name="username"
+          placeholder="Enter username"
+          required
+          [disabled]="loading">
+      </div>
+      
+      <div class="input-group">
+        <label for="email">Email Address (Optional):</label>
+        <input 
+          type="email" 
+          [(ngModel)]="email" 
+          name="email"
+          placeholder="Enter email address"
+          [disabled]="loading">
+      </div>
+      
+      <div class="input-group">
+        <label for="password">Password:</label>
+        <input 
+          type="password" 
+          [(ngModel)]="password" 
+          name="password"
+          placeholder="Enter password"
+          required
+          [disabled]="loading">
+      </div>
+      
+      <div class="input-group">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input 
+          type="password" 
+          [(ngModel)]="confirmPassword" 
+          name="confirmPassword"
+          placeholder="Re-enter password"
+          required
+          [disabled]="loading">
+      </div>
+      
+      <div *ngIf="error" class="error">
+        <span class="status-indicator error"></span>
+        {{ error }}
+      </div>
+      
+      <div *ngIf="success" class="success">
+        <span class="status-indicator success"></span>
+        {{ success }}
+      </div>
+      
+      <div class="button-group">
+        <button type="submit" [disabled]="loading">
+          <span *ngIf="!loading">Create Account</span>
+          <span *ngIf="loading" class="loading-text">
+            Creating Account<span class="loading-dots"></span>
+          </span>
+        </button>
+        
+        <button type="button" class="cancel-btn" (click)="onCloseWindow()" [disabled]="loading">
+          Cancel
+        </button>
+      </div>
+    </form>
+    
+    <div class="requirements-box">
+      <div class="requirements-title">Password Requirements:</div>
+      <ul class="requirements-list">
+        <li>Minimum 6 characters</li>
+        <li>No special characters like quotes or semicolons</li>
+        <li>Must match confirmation</li>
+      </ul>
+    </div>
+  </div>
+</div>

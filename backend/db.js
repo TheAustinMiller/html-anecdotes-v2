@@ -246,8 +246,6 @@ class Database {
   }
 }
 
-// Create and export database instance
 const database = new Database();
 
-// Export the database instance
 module.exports = database;

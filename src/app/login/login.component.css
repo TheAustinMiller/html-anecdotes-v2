@@ -1,0 +1,264 @@
+.login-container {
+    background-color: #c0c0c0;
+    border: 2px outset #c0c0c0;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 600px;
+    font-family: 'MS Sans Serif', sans-serif;
+    font-size: 12px;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Window titlebar */
+.login-titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 18px;
+    padding: 2px 4px;
+    background: linear-gradient(90deg, #000080 0%, #000040 100%);
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.login-title {
+    font-size: 11px;
+    line-height: 14px;
+}
+
+.title-controls {
+    display: flex;
+    gap: 2px;
+}
+
+.win-button {
+    width: 16px;
+    height: 14px;
+    background: #c0c0c0;
+    border: 1px outset #c0c0c0;
+    font-size: 9px;
+    color: black;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.win-button:active {
+    border: 1px inset #c0c0c0;
+}
+
+.win-close::before {
+    content: "✕";
+    font-size: 7px;
+}
+
+/* Window body */
+.login-body {
+    background-color: #c0c0c0;
+    padding: 40px;
+    border: 1px inset #c0c0c0;
+}
+
+.brand-section {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px inset #c0c0c0;
+    background: #d1d1d1;
+}
+
+.brand-section h1 {
+    font-size: 20px;
+    color: #000;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.brand-section p {
+    font-size: 12px;
+    color: #000;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label {
+    font-size: 12px;
+    color: #000;
+    font-weight: normal;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 2px inset #c0c0c0;
+    background: #ffffff;
+    font-family: 'MS Sans Serif', sans-serif;
+    font-size: 12px;
+    color: #000;
+    outline: none;
+    height: 32px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    background: #ffffff;
+}
+
+input:disabled {
+    background: #f0f0f0;
+    color: #808080;
+    cursor: not-allowed;
+}
+
+.error {
+    background: #c0c0c0;
+    color: #c00000;
+    padding: 8px;
+    font-size: 11px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+button[type="submit"] {
+    min-width: 160px;
+    display: inline-block;
+    padding: 8px 20px;
+    font-family: 'MS Sans Serif', sans-serif;
+    font-size: 15px;
+    color: black;
+    background: #cacaca;
+    border: 2px inset #dbdbdb;
+    border: 2px outset #c0c0c0;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+    background: #d4d0c8;
+}
+
+button[type="submit"]:active:not(:disabled) {
+    border: 2px inset #c0c0c0;
+}
+
+button[type="submit"]:disabled {
+    color: #808080;
+    cursor: not-allowed;
+}
+
+.signup-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 11px;
+    padding-top: 15px;
+    border-top: 1px solid #808080;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.signup-link a {
+    color: #000080;
+    text-decoration: underline;
+}
+
+.signup-link a:hover {
+    color: #0000ff;
+}
+
+/* Loading state */
+.loading-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.loading-dots::after {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background: #000;
+    border-radius: 50%;
+    animation: loading-dots 1.4s infinite ease-in-out;
+}
+
+@keyframes loading-dots {
+
+    0%,
+    80%,
+    100% {
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 1;
+    }
+}
+
+/* Status indicators */
+.status-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #00ff00;
+    border: 1px solid #000;
+}
+
+.status-indicator.error {
+    background: #ff0000;
+}
+
+.status-indicator.warning {
+    background: #ffff00;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+    .login-container {
+        max-width: 90%;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .login-body {
+        padding: 20px;
+    }
+
+    .brand-section {
+        padding: 15px;
+    }
+}
