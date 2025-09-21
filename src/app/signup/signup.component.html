@@ -69,19 +69,19 @@
       </div>
       
       <div class="button-group">
+        <button type="button" class="cancel-btn" (click)="onCloseWindow()" [disabled]="loading">
+          Cancel
+        </button>
+
         <button type="submit" [disabled]="loading">
           <span *ngIf="!loading">Create Account</span>
           <span *ngIf="loading" class="loading-text">
             Creating Account<span class="loading-dots"></span>
           </span>
         </button>
-        
-        <button type="button" class="cancel-btn" (click)="onCloseWindow()" [disabled]="loading">
-          Cancel
-        </button>
       </div>
     </form>
-    
+
     <div class="requirements-box">
       <div class="requirements-title">Password Requirements:</div>
       <ul class="requirements-list">

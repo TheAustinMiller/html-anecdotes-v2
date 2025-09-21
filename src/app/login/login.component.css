@@ -178,7 +178,7 @@ button[type="submit"]:disabled {
 .signup-link {
     text-align: center;
     margin-top: 15px;
-    font-size: 11px;
+    font-size: 13px;
     padding-top: 15px;
     border-top: 1px solid #808080;
     display: flex;
@@ -188,12 +188,12 @@ button[type="submit"]:disabled {
 }
 
 .signup-link a {
-    color: #000080;
+    color: #0000ff;
     text-decoration: underline;
 }
 
 .signup-link a:hover {
-    color: #0000ff;
+    color: #000080;
 }
 
 /* Loading state */
