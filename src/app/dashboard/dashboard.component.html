@@ -17,7 +17,7 @@
         {{ success }}
         <button class="close-msg" (click)="clearMessages()">×</button>
       </div>
-      
+
       <div *ngIf="error" class="message-bar error">
         <span class="status-indicator error"></span>
         {{ error }}
@@ -34,14 +34,14 @@
             🔄 Refresh
           </button>
         </div>
-        
+
         <div class="toolbar-section">
           <span class="user-info">
             <span class="status-indicator"></span>
             Logged in as: <strong>{{ currentUser?.username }}</strong>
           </span>
           <button class="toolbar-btn logout-btn" (click)="onLogout()">
-             Logout
+            Logout
           </button>
         </div>
       </div>
@@ -67,12 +67,16 @@
             <div class="post-header">
               <div class="post-title">{{ post.title }}</div>
               <div class="post-controls">
-                <button class="post-btn" (click)="onEditPost(post)" title="Edit">
+                <button *ngIf="canEditPost(post)" class="post-btn" (click)="onEditPost(post)" title="Edit">
                   ✏️
                 </button>
-                <button class="post-btn delete-btn" (click)="onDeletePost(post)" title="Delete">
+                <button *ngIf="canEditPost(post)" class="post-btn delete-btn" (click)="onDeletePost(post)"
+                  title="Delete">
                   🗑️
                 </button>
+                <span *ngIf="!canEditPost(post)" class="post-locked" title="Editing locked after 30 minutes">
+                  🔒
+                </span>
               </div>
             </div>
             <div class="post-content">{{ post.content }}</div>
@@ -97,32 +101,22 @@
           <button class="win-button win-close" (click)="onCancelNewPost()">✕</button>
         </div>
       </div>
-      
+
       <div class="dialog-body">
         <form (ngSubmit)="onCreatePost()">
           <div class="input-group">
             <label for="newTitle">Title:</label>
-            <input 
-              type="text" 
-              [(ngModel)]="newPostTitle" 
-              name="newTitle"
-              placeholder="Enter anecdote title"
-              required
+            <input type="text" [(ngModel)]="newPostTitle" name="newTitle" placeholder="Enter anecdote title" required
               [disabled]="creatingPost">
           </div>
-          
+
           <div class="input-group">
             <label for="newContent">Story:</label>
-            <textarea 
-              [(ngModel)]="newPostContent" 
-              name="newContent"
-              placeholder="Tell your anecdote..."
-              rows="8"
-              required
-              [disabled]="creatingPost">
+            <textarea [(ngModel)]="newPostContent" name="newContent" placeholder="Tell your anecdote..." rows="8"
+              required [disabled]="creatingPost">
             </textarea>
           </div>
-          
+
           <div class="dialog-buttons">
             <button type="submit" [disabled]="creatingPost">
               <span *ngIf="!creatingPost">Create Post</span>
@@ -148,28 +142,20 @@
           <button class="win-button win-close" (click)="onCancelEdit()">✕</button>
         </div>
       </div>
-      
+
       <div class="dialog-body">
         <form (ngSubmit)="onSaveEdit()">
           <div class="input-group">
             <label for="editTitle">Title:</label>
-            <input 
-              type="text" 
-              [(ngModel)]="editTitle" 
-              name="editTitle"
-              required>
+            <input type="text" [(ngModel)]="editTitle" name="editTitle" required>
           </div>
-          
+
           <div class="input-group">
             <label for="editContent">Story:</label>
-            <textarea 
-              [(ngModel)]="editContent" 
-              name="editContent"
-              rows="8"
-              required>
+            <textarea [(ngModel)]="editContent" name="editContent" rows="8" required>
             </textarea>
           </div>
-          
+
           <div class="dialog-buttons">
             <button type="submit">Save Changes</button>
             <button type="button" (click)="onCancelEdit()">Cancel</button>

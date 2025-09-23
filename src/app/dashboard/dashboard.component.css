@@ -180,11 +180,74 @@
     font-weight: bold;
 }
 
+/* Windows 95 inspired scrollbars */
 .posts-list {
     flex: 1;
-    overflow-y: auto;
+    overflow-y: scroll;
     padding: 8px;
+    scrollbar-width: thin; /* Firefox fallback */
+    scrollbar-color: #c0c0c0 #f0f0f0;
 }
+
+/* Custom scrollbar for webkit browsers */
+.posts-list::-webkit-scrollbar {
+    width: 17px; /* chunky Win95 look */
+    background: #c0c0c0;
+}
+
+.posts-list::-webkit-scrollbar-track {
+    background: #c0c0c0;
+    border: 2px inset #ffffff;
+    box-shadow: inset -1px -1px #808080, inset 1px 1px #ffffff;
+}
+
+.posts-list::-webkit-scrollbar-thumb {
+    background: #c0c0c0;
+    border: 2px outset #ffffff;
+    box-shadow: inset -1px -1px #808080, inset 1px 1px #ffffff;
+    min-height: 20px;
+}
+
+.posts-list::-webkit-scrollbar-thumb:hover {
+    background: #d4d0c8;
+}
+
+.posts-list::-webkit-scrollbar-thumb:active {
+    border: 2px inset #ffffff;
+    background: #a0a0a0;
+}
+
+.posts-list::-webkit-scrollbar-button {
+    width: 17px;
+    height: 17px;
+    background: #c0c0c0;
+    border: 2px outset #ffffff;
+    box-shadow: inset -1px -1px #808080, inset 1px 1px #ffffff;
+}
+
+/* Up arrow */
+.posts-list::-webkit-scrollbar-button:vertical:start {
+    background: #c0c0c0 url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8">\
+<path d="M4 2L1 6h6z" fill="black"/></svg>') no-repeat center;
+}
+
+/* Down arrow */
+.posts-list::-webkit-scrollbar-button:vertical:end {
+    background: #c0c0c0 url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8">\
+<path d="M4 6L1 2h6z" fill="black"/></svg>') no-repeat center;
+}
+
+.posts-list::-webkit-scrollbar-button:hover {
+    background-color: #d4d0c8;
+}
+
+.posts-list::-webkit-scrollbar-button:active {
+    border: 2px inset #ffffff;
+    background-color: #a0a0a0;
+}
+
 
 .post-item {
     background: #f8f8f8;
@@ -368,7 +431,7 @@
     padding: 6px 16px;
     font-family: 'MS Sans Serif', sans-serif;
     font-size: 11px;
-    background: #cacaca;
+    background: #c0c0c0;
     border: 2px outset #c0c0c0;
     cursor: pointer;
 }

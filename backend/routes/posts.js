@@ -7,6 +7,12 @@ const router = express.Router();
 // Apply auth middleware to all routes in this file
 router.use(authMiddleware);
 
+function canModifyPost(post) {
+  const thirtyMinutesAgo = new Date(Date.now() - 30 * 60 * 1000);
+  const postCreated = new Date(post.createdAt);
+  return postCreated > thirtyMinutesAgo;
+}
+
 // GET /api/posts - Get all posts for the logged-in user
 router.get('/', async (req, res) => {
   try {
@@ -108,6 +114,11 @@ router.put('/:id', async (req, res) => {
       return res.status(403).json({ error: 'Access denied. You can only update your own posts.' });
     }
 
+    // Check 30-minute window
+    if (!canModifyPost(existingPost)) {
+      return res.status(403).json({ error: 'Post can only be edited within 30 minutes of creation' });
+    }
+
     // Update post
     await db.updatePost(postId, title, content);
     
@@ -138,6 +149,11 @@ router.delete('/:id', async (req, res) => {
 
     if (existingPost.userId !== userId) {
       return res.status(403).json({ error: 'Access denied. You can only delete your own posts.' });
+    }
+
+    // Check 30-minute window
+    if (!canModifyPost(existingPost)) {
+      return res.status(403).json({ error: 'Post can only be edited within 30 minutes of creation' });
     }
 
     // Delete post
