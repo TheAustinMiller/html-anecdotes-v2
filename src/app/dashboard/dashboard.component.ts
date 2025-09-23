@@ -151,6 +151,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.subscriptions.push(editSub);
   }
 
+  canEditPost(post: Post): boolean {
+  const thirtyMinutesAgo = new Date(Date.now() - 30 * 60 * 1000);
+  const postCreated = new Date(post.createdAt);
+  return postCreated > thirtyMinutesAgo;
+}
+
   onDeletePost(post: Post): void {
     if (confirm(`Are you sure you want to delete "${post.title}"?`)) {
       const deleteSub = this.postService.deletePost(post.id).subscribe({
